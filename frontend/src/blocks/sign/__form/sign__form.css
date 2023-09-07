@@ -1,0 +1,9 @@
+.sign__form {
+    margin: auto;
+}
+
+@media (max-width: 500px) {
+    .sign__form {
+        width: 260px;
+    }
+}

@@ -1,0 +1,10 @@
+.sign__login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 15px 0 0;
+}

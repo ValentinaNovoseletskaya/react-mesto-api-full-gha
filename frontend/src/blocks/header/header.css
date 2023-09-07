@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 0 38px;
+    margin: auto;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media (max-width: 400px) {
+    .header {
+        padding: 28px 0 27px;
+    }  
+}

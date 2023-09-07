@@ -1,0 +1,16 @@
+.popup__status {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    padding-top: 32px;
+}
+
+@media (max-width: 500px) {
+    .popup__status {
+        font-size: 20px;
+        line-height: 22px;
+        margin: 0 0 45px;
+    }
+}

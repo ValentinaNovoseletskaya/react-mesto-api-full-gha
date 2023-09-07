@@ -1,0 +1,8 @@
+.sign__link {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.sign__link:hover {
+    color: rgba(255, 255, 255, 0.6);
+}

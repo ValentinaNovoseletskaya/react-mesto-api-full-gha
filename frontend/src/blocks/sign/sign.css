@@ -1,0 +1,8 @@
+.sign {
+    display: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: auto;
+    justify-items: center;
+    width: 358px;
+    height: 100%;
+}

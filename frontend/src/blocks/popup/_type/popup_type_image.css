@@ -1,0 +1,5 @@
+.popup_type_image {
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.9);
+}
