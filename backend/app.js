@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
 app.use(auth);
-app.use(cors);
+// app.use(cors);
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
 
