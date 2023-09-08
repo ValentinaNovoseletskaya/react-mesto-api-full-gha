@@ -6,7 +6,7 @@ const OwnerError = require('../middlewares/errors/OwnerError');
 
 module.exports.getCards = (req, res, next) => {
   card.find({})
-    .then((cards) => res.status(200).send({ data: cards }))
+    .then((cards) => res.status(200).send(cards))
     .catch((e) => {
       next(e);
     });
