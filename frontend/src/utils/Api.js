@@ -30,6 +30,22 @@ class Api {
       });
     }
 
+    signin(data) {
+      return this._request(`${this._baseUrl}/signin`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: this._headers
+      });
+    }
+
+    signup(data) {
+        return this._request(`${this._baseUrl}/signup`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: this._headers
+        });
+    }
+
     getUserInfo() {
       return this._request(`${this._baseUrl}/users/me`, {
         headers: this._headers

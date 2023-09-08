@@ -1,5 +1,4 @@
 import {api} from '../utils/Api.js';
-import {authApi} from '../utils/AuthApi.js';
 import {useEffect, useState} from 'react';
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import '../index.css';
@@ -48,19 +47,16 @@ function App() {
         }
     }, [useLoggedInToken]);
 
-    useEffect(() => {
-        const token = localStorage.getItem('token') 
-        if (token) {
-            authApi.getUserInfo(token)
-            .then((data) => {
-                setUseLoggedInToken(true);
-                setCurrentUserEmail(data.data.email);
-                navigate('/');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
+    useEffect(() => {        
+        api.getUserInfo()
+        .then((data) => {
+            setUseLoggedInToken(true);
+            setCurrentUserEmail(data.data.email);
+            navigate('/');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
      }, [navigate]);
 
     function handleEditAvatarClick() {
@@ -163,7 +159,7 @@ function App() {
     }
 
     function handleLoginSubmit(formData) {
-        authApi.signin(formData)
+        api.signin(formData)
             .then((data) => {
               setUseLoggedInToken(true);
               localStorage.setItem('token', data.token);
@@ -176,7 +172,7 @@ function App() {
     }
 
     function handleRegisterSubmit(formData) {        
-          authApi.signup(formData)
+          api.signup(formData)
             .then(() => {
                 setUseLoggedInToken(true);
                 setIsSignupSuccess(true);
