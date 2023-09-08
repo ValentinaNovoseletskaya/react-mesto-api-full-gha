@@ -45,10 +45,6 @@ class AuthApi {
     }
 }
 
-const apiSettings = {
-    host: 'https://auth.nomoreparties.co'
-};
-
-const baseUrl = apiSettings.host;
+const baseUrl = 'https://api.valentina.students.nomoredomainsicu.ru';
 
 export const authApi = new AuthApi(baseUrl);

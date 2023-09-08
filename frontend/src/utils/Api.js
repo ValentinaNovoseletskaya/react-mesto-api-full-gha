@@ -74,16 +74,10 @@ class Api {
     }
 }
 
-const apiSettings = {
-    host: 'https://mesto.nomoreparties.co/v1/', 
-    token: 'e80de601-eadc-4261-9de7-7dde09fbf72f',
-    cohortId: 'cohort-66'
-};
 const headers = {
-    authorization: apiSettings.token,
     "Content-Type": "application/json"
 };
   
-const baseUrl = apiSettings.host + apiSettings.cohortId;
+const baseUrl = 'https://api.valentina.students.nomoredomainsicu.ru';
 
 export const api = new Api(baseUrl, headers);
