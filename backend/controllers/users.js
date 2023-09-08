@@ -122,7 +122,7 @@ module.exports.editUser = (req, res, next) => {
   return user.findByIdAndUpdate(userId, { name, about }, { runValidators: true, new: true })
     .orFail(new Error('NotValidId'))
     .then((data) => {
-      res.status(200).send({ data });
+      res.status(200).send(data);
     })
     .catch((e) => {
       if (e.message === 'NotValidId') {
@@ -148,14 +148,7 @@ module.exports.editAvatar = (req, res, next) => {
         const err = new NotFoundError('Пользователь не найден');
         next(err);
       } else {
-        res.status(200).send({
-          data: {
-            name: currentUser.name,
-            about: currentUser.about,
-            avatar: currentUser.avatar,
-            _id: currentUser.id,
-          },
-        });
+        res.status(200).send(currentUser);
       }
     })
     .catch((e) => {

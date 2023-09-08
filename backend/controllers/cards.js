@@ -66,7 +66,7 @@ module.exports.likeCard = (req, res, next) => {
   )
     .orFail(new Error('NotValidId'))
     .then((data) => {
-      res.status(200).send({ data });
+      res.status(200).send(data);
     })
     .catch((e) => {
       if (e.message === 'NotValidId') {
@@ -90,7 +90,7 @@ module.exports.dislikeCard = (req, res, next) => {
   )
     .orFail(new Error('NotValidId'))
     .then((data) => {
-      res.status(200).send({ data });
+      res.status(200).send(data);
     })
     .catch((e) => {
       if (e.message === 'NotValidId') {
