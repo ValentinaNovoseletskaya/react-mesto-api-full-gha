@@ -26,9 +26,10 @@ mongoose.connect(DB_URL, {
   useNewUrlParser: true,
 });
 
+app.use(cors);
+
 require('dotenv').config();
 
-app.use(cors);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
