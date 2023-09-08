@@ -50,16 +50,16 @@ function App() {
     useEffect(() => {      
         const token = localStorage.getItem('token') 
         if (token) {  
-        api.getUserInfo()
-        .then((data) => {
-            setUseLoggedInToken(true);
-            setCurrentUserEmail(data.data.email);
-            navigate('/');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }
+            api.getUserInfo()
+            .then((data) => {
+                setUseLoggedInToken(true);
+                setCurrentUserEmail(data.email);
+                navigate('/');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
      }, [navigate]);
 
     function handleEditAvatarClick() {
