@@ -18,6 +18,7 @@ class Api {
 
     getInitialCards() {
       return this._request(`${this._baseUrl}/cards`, {
+        credentials: 'include',
         headers: this._headers
       });
     } 
@@ -26,6 +27,7 @@ class Api {
       return this._request(`${this._baseUrl}/cards`, {
         method: "POST",
         body: JSON.stringify(data),
+        credentials: 'include',
         headers: this._headers
       });
     }
@@ -34,6 +36,7 @@ class Api {
       return this._request(`${this._baseUrl}/signin`, {
         method: "POST",
         body: JSON.stringify(data),
+        credentials: 'include',
         headers: this._headers
       });
     }
@@ -42,12 +45,14 @@ class Api {
         return this._request(`${this._baseUrl}/signup`, {
           method: "POST",
           body: JSON.stringify(data),
+          credentials: 'include',
           headers: this._headers
         });
     }
 
     getUserInfo() {
       return this._request(`${this._baseUrl}/users/me`, {
+        credentials: 'include',
         headers: this._headers
       });
     } 
@@ -55,7 +60,8 @@ class Api {
     editUserInfo(data) {
       return this._request(`${this._baseUrl}/users/me`, {
         method: "PATCH",
-        body: JSON.stringify(data),  
+        body: JSON.stringify(data),
+        credentials: 'include',
         headers: this._headers
       });
     }
@@ -63,7 +69,8 @@ class Api {
     editUserAvatar(data) {
       return this._request(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",
-        body: JSON.stringify(data),  
+        body: JSON.stringify(data),
+        credentials: 'include',
         headers: this._headers
       });
     }
@@ -71,6 +78,7 @@ class Api {
     changeLikeCardStatus(cardId, isLiked) {
       return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
         method: isLiked ? "DELETE" : "PUT",
+        credentials: 'include',
         headers: this._headers
       });
     }
@@ -78,6 +86,7 @@ class Api {
     removeCard(cardId) {
       return this._request(`${this._baseUrl}/cards/${cardId}`, {
         method: "DELETE",
+        credentials: 'include',
         headers: this._headers
       });
     }
