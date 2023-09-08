@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.123.10
+IP 158.160.123.10
 
 Frontend https://valentina.students.nomoredomainsicu.ru
 
