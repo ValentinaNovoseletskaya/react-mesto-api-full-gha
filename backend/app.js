@@ -26,13 +26,13 @@ mongoose.connect(DB_URL, {
   useNewUrlParser: true,
 });
 
+app.use(cors);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
 app.use(auth);
-app.use(cors);
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
 
