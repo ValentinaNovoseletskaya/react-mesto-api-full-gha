@@ -47,7 +47,9 @@ function App() {
         }
     }, [useLoggedInToken]);
 
-    useEffect(() => {        
+    useEffect(() => {      
+        const token = localStorage.getItem('token') 
+        if (token) {  
         api.getUserInfo()
         .then((data) => {
             setUseLoggedInToken(true);
@@ -57,6 +59,7 @@ function App() {
         .catch((err) => {
             console.log(err);
         });
+    }
      }, [navigate]);
 
     function handleEditAvatarClick() {
