@@ -45,10 +45,7 @@ module.exports.deleteCard = (req, res, next) => {
         });
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Карточка не найдена');
-        next(err);
-      } else if (e.name === 'CastError') {
+      if (e.name === 'CastError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else {
@@ -70,10 +67,7 @@ module.exports.likeCard = (req, res, next) => {
       res.status(200).send(data);
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Карточка не найдена');
-        next(err);
-      } else if (e.name === 'CastError') {
+      if (e.name === 'CastError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else {
@@ -95,10 +89,7 @@ module.exports.dislikeCard = (req, res, next) => {
       res.status(200).send(data);
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Карточка не найдена');
-        next(err);
-      } else if (e.name === 'CastError') {
+      if (e.name === 'CastError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else {

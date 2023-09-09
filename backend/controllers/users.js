@@ -18,7 +18,7 @@ module.exports.getUsers = (req, res, next) => {
 module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
   return user.findById(userId)
-    .orFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Пользователь не найден'))
     .then((data) => {
       const {
         name, about, avatar, id, email,
@@ -30,10 +30,7 @@ module.exports.getUserById = (req, res, next) => {
       );
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Пользователь не найден');
-        next(err);
-      } else if (e.name === 'CastError') {
+      if (e.name === 'CastError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else {
@@ -45,7 +42,7 @@ module.exports.getUserById = (req, res, next) => {
 module.exports.getLoggedUser = (req, res, next) => {
   const userId = req.user._id;
   return user.findById(userId)
-    .orFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Пользователь не найден'))
     .then((data) => {
       const {
         name, about, avatar, id, email,
@@ -57,10 +54,7 @@ module.exports.getLoggedUser = (req, res, next) => {
       );
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Пользователь не найден');
-        next(err);
-      } else if (e.name === 'CastError') {
+      if (e.name === 'CastError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else {
@@ -97,9 +91,9 @@ module.exports.createUser = (req, res, next) => {
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return user.findUserByCredentials(email, password)
-    .then((u) => {
+    .then((users) => {
       const payload = {
-        _id: u._id,
+        _id: users._id,
       };
       const { NODE_ENV, JWT_SECRET } = process.env;
       const token = jwt.sign(
@@ -115,15 +109,12 @@ module.exports.editUser = (req, res, next) => {
   const userId = req.user._id;
   const { name, about } = req.body;
   return user.findByIdAndUpdate(userId, { name, about }, { runValidators: true, new: true })
-    .orFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Пользователь не найден'))
     .then((data) => {
       res.status(200).send(data);
     })
     .catch((e) => {
-      if (e.message === 'NotValidId') {
-        const err = new NotFoundError('Пользователь не найден');
-        next(err);
-      } else if (e.name === 'ValidationError') {
+      if (e.name === 'ValidationError') {
         const err = new ValidationError('Ошибка в параметрах ввода');
         next(err);
       } else if (e.name === 'CastError') {
