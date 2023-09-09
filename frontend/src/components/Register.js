@@ -24,10 +24,14 @@ function Register({onRegister}) {
         Регистрация
       </p>
       <form className="sign__form" onSubmit={handleSubmit}>
-        <input className="sign__input" id="email" name="email" type="email" placeholder="Email" onChange={ e=>{
+        <input className="sign__input" id="email" name="email" type="email" placeholder="Email" 
+        value={formValue.email || '' }
+        onChange={ e=>{
           setFormValue({...formValue, email: e.target.value})
         } } />
-        <input className="sign__input" id="password" name="password" type="password" placeholder="Пароль" onChange={ e=>{
+        <input className="sign__input" id="password" name="password" type="password" placeholder="Пароль" 
+        value={formValue.password || '' }
+        onChange={ e=>{
           setFormValue({...formValue, password: e.target.value})
         } } />
         <button type="submit" className='popup__save-button sign__button'>Зарегистрироваться</button>

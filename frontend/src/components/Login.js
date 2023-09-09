@@ -23,10 +23,13 @@ function Login({onLogIn}) {
         Вход
       </p>
       <form className="sign__form" onSubmit={handleSubmit}>
-        <input className="sign__input" required id="email" name="email" type="text" placeholder="Email" onChange={ e=>{
+        <input className="sign__input" required id="email" name="email" type="text" placeholder="Email" 
+        value={formValue.email || '' }
+        onChange={ e=>{
           setFormValue({...formValue, email: e.target.value})
         } } />
         <input className="sign__input" required id="password" name="password" type="password" placeholder="Пароль" 
+        value={formValue.password || '' }
         onChange={ e=>{
           setFormValue({...formValue, password: e.target.value})
         } } />

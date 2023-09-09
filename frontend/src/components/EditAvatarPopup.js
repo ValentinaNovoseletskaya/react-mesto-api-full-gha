@@ -31,6 +31,7 @@ function EditAvatarPopup({onUpdateAvatar, isOpen, isLoading, onClose}) {
                     type={type}
                     required={required}
                     name={name}
+                    value={ avatarRef.current.value  || '' }
                     ref={avatarRef}
                     onChange={ e=>{ 
                         const errorMessage = e.target.validationMessage

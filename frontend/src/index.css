@@ -46,6 +46,7 @@
 @import url(./blocks/popup/__confirm-button/popup__confirm-button.css);
 @import url(./blocks/popup/__status/popup__status.css);
 @import url(./blocks/popup/__status-image/popup__status-image.css);
+@import url(./blocks/popup/_background/popup_background_dark.css);
 @import url(./blocks/sign/sign.css);
 @import url(./blocks/sign/__welcome/sign__welcome.css);
 @import url(./blocks/sign/__form/sign__form.css);
