@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const AuthorizationError = require('../middlewares/errors/AuthorizationError');
 
 const userSchema = new mongoose.Schema(
   {
@@ -49,13 +50,13 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(email,
     .then((user) => {
       if (!user) {
         return Promise.reject(
-          new Error('Некорректно введены почта или пароль'),
+          new AuthorizationError('Некорректно введены почта или пароль'),
         );
       }
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
           return Promise.reject(
-            new Error('Некорректно введены почта или пароль'),
+            new AuthorizationError('Некорректно введены почта или пароль'),
           );
         }
         return user;
