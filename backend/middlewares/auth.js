@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
   if (!token) {
     const err = new AuthorizationError('Необходима авторизация');
     next(err);
+    return;
   }
 
   let payload;
@@ -17,6 +18,7 @@ module.exports = (req, res, next) => {
   } catch (e) {
     const err = new AuthorizationError('Необходима авторизация');
     next(err);
+    return;
   }
 
   req.user = payload;

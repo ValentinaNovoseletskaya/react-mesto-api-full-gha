@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -19,6 +20,13 @@ const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.en
 
 const app = express();
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
@@ -27,9 +35,6 @@ mongoose.connect(DB_URL, {
 });
 
 app.use(cors);
-
-require('dotenv').config();
-
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
@@ -38,6 +43,7 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+app.use(limiter);
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
 app.use(auth);
@@ -51,12 +57,4 @@ app.use('*', (req, res, next) => {
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  standardHeaders: 'draft-7',
-  legacyHeaders: false,
-});
-
-app.use(limiter);
 app.listen(PORT);
